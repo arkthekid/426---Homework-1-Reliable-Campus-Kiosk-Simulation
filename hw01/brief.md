@@ -170,10 +170,10 @@ Examples:
 - simulator: kiosk-01-0001
 
 When the API receives a request:
-	1.	it builds a Redis key from clientOrderId
-	2.	it checks whether that logical order already exists
-	3.	if the order is new, it stores the order state and queues work
-	4.	if the order already exists, it returns the existing state instead of queueing duplicate work
+1.	it builds a Redis key from clientOrderId
+2.	it checks whether that logical order already exists
+3.	if the order is new, it stores the order state and queues work
+4.	if the order already exists, it returns the existing state instead of queueing duplicate work
 
 Because the same logical order always reuses the same clientOrderId, duplicate retries are recognized safely. This prevents duplicate completed side effects for the same logical order.
 
