@@ -1,0 +1,12 @@
+{
+  "name": "hw01-worker",
+  "version": "1.0.0",
+  "main": "worker.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node worker.js"
+  },
+  "dependencies": {
+    "redis": "^4.7.0"
+  }
+}

@@ -1,0 +1,35 @@
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - redis
+
+  worker:
+    build: ./worker
+    environment:
+      REDIS_URL: redis://redis:6379
+      PROCESSING_DELAY_MS: 4000
+    depends_on:
+      - redis
+
+  kiosk-sim:
+    build: ./kiosk-sim
+    environment:
+      KIOSK_SIM_API_BASE_URL: http://api:3000
+      KIOSK_SIM_KIOSKS: 3
+      KIOSK_SIM_KIOSK_PREFIX: kiosk
+      KIOSK_SIM_INTERVAL_MS: 2000
+      KIOSK_SIM_REUSE_EXISTING_ID_RATE: 0.3
+      KIOSK_SIM_STARTUP_DELAY_MS: 3000
+    depends_on:
+      - api

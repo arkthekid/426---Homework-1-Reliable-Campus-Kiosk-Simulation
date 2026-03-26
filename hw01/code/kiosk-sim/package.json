@@ -1,0 +1,12 @@
+{
+  "name": "hw01-kiosk-sim",
+  "version": "1.0.0",
+  "main": "simulator.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node simulator.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
