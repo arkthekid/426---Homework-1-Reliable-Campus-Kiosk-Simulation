@@ -97,13 +97,13 @@ Redis stores the shared state of the system and the queue of pending jobs.
 ## HTML Request Flow
 
 The kiosk page is a plain HTML form. A user enters:
-•	clientOrderId
-•	item
-•	quantity
+- clientOrderId
+- item
+- quantity
 
 The form submits to the server, and the server applies the same order creation logic used by the JSON API. After submission, the page shows whether the order was:
-•	accepted as a new order
-•	recognized as a duplicate retry
+- accepted as a new order
+- recognized as a duplicate retry
 
 The monitoring dashboard is also a plain HTML page. It refreshes automatically every few seconds and shows recent order state so the grader can observe queued, processing, and completed.
 
@@ -114,16 +114,16 @@ The monitoring dashboard is also a plain HTML page. It refreshes automatically e
 This project uses Redis for both queueing and shared system state.
 
 Queue
-	•	queue:orders
-	•	Redis list used as the pending job queue
+- queue:orders
+- Redis list used as the pending job queue
 
 Order state
-	•	order:<clientOrderId>
-	•	Stores one JSON object for each logical order
+- order:<clientOrderId>
+- Stores one JSON object for each logical order
 
 Recent order tracking
-	•	orders:recent
-	•	Stores recent order IDs so the dashboard can render the latest activity
+- orders:recent
+- Stores recent order IDs so the dashboard can render the latest activity
 
 This design keeps the system small and easy to explain while still showing the separation between fast request handling and slower background work.
 
@@ -134,10 +134,10 @@ This design keeps the system small and easy to explain while still showing the s
 The kiosk simulator starts multiple async kiosk loops in parallel.
 
 Each kiosk:
-	•	has its own kiosk ID such as kiosk-01
-	•	keeps its own local counter
-	•	generates IDs such as kiosk-01-0001, kiosk-01-0002, etc.
-	•	sometimes retries a previously used ID instead of creating a new one
+- has its own kiosk ID such as kiosk-01
+- keeps its own local counter
+- generates IDs such as kiosk-01-0001, kiosk-01-0002, etc.
+- sometimes retries a previously used ID instead of creating a new one
 
 This makes it easy to observe both concurrent submissions and duplicate retries.
 
@@ -166,8 +166,8 @@ My idempotency strategy is enforced at the API boundary.
 The client creates the logical order identifier clientOrderId. That identifier remains stable across retries.
 
 Examples:
-	•	browser: kiosk-ui-...
-	•	simulator: kiosk-01-0001
+- browser: kiosk-ui-...
+- simulator: kiosk-01-0001
 
 When the API receives a request:
 	1.	it builds a Redis key from clientOrderId
@@ -188,9 +188,9 @@ The API responds quickly because it only validates, stores state, and queues wor
 The worker processes jobs asynchronously, which creates a visible queue boundary.
 
 The dashboard makes the state transitions observable:
-	•	queued
-	•	processing
-	•	completed
+- queued
+- processing
+- completed
 
 The duplicate retry behavior is safe because the system treats the same clientOrderId as the same logical order instead of a new one.
 
