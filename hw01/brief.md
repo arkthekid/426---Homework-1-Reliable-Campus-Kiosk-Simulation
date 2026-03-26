@@ -67,11 +67,11 @@ Worker logs and kiosk simulator activity can be observed directly in the docker 
 
 ---
 
-Short Architecture Explanation
+## Short Architecture Explanation
 
 This project is a small multi-container system with four services:
 
-1. api
+1. **api**
 
 The API is an Express server. It serves:
 	•	the kiosk page at /
@@ -80,19 +80,19 @@ The API is an Express server. It serves:
 
 It accepts new orders, stores order state in Redis, and queues new work without doing the slow fulfillment work inline.
 
-2. worker
+2. **worker**
 
 The worker runs separately from the API. It waits for queued jobs in Redis, simulates fulfillment with a short delay, and updates order state from queued to processing to completed.
 
-3. kiosk-sim
+3. **kiosk-sim**
 
 The kiosk simulator runs as a separate service and simulates multiple kiosks sending orders in parallel. It generates unique kiosk-specific order IDs and sometimes intentionally retries an old logical order ID to demonstrate idempotency behavior.
 
-4. redis
+4. **redis**
 
 Redis stores the shared state of the system and the queue of pending jobs.
 
-⸻
+---
 
 HTML Request Flow
 
