@@ -15,15 +15,15 @@ From inside the `code/` folder, run:
 ```bash
 docker compose up --build
 
-The main app is available at:
+**The main app is available at:**
 
 http://localhost:3000
 
-The monitoring dashboard is available at:
+**The monitoring dashboard is available at:**
 
 http://localhost:3000/dashboard
 
-To stop the project:
+** To stop the project:**
 
 Ctrl + C
 
@@ -31,7 +31,9 @@ or
 
 docker compose down
 
-How to Test the Project
+---
+
+## How to Test the Project
 
 Browser flow
 	1.	Open the kiosk page at http://localhost:3000
