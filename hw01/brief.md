@@ -231,7 +231,7 @@ Example status check
 ![Duplicate Order](shots/06-duplicate-handling.png)
 
 4. **Monitoring Dashboard**
-![Monitoring Dashboard](shots/05-dashboard.png)
+![Monitoring Dashboard](shots/05-dashboard-basic.png)
 
 5. **Worker Logs (Background Processing)**
 ![Worker Logs](shots/04-worker-processing.png)
