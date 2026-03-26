@@ -34,32 +34,32 @@ From inside the `code/` folder, run:
 
 ## How to Test the Project
 
-Browser flow
-	1.	Open the kiosk page at http://localhost:3000
-	2.	Submit a new order through the HTML form
-	3.	Observe the success message showing that the order was accepted
-	4.	Leave the same clientOrderId unchanged and submit again
-	5.	Observe that the duplicate submission is recognized safely
-	6.	Open the monitoring dashboard at http://localhost:3000/dashboard
-	7.	Watch orders move through queued, processing, and completed
+**Browser flow**
+	- 1.	Open the kiosk page at http://localhost:3000
+	- 2.	Submit a new order through the HTML form
+	- 3.	Observe the success message showing that the order was accepted
+	- 4.	Leave the same clientOrderId unchanged and submit again
+	- 5.	Observe that the duplicate submission is recognized safely
+	- 6.	Open the monitoring dashboard at http://localhost:3000/dashboard
+	- 7.	Watch orders move through queued, processing, and completed
 
-API flow
+**API flow**
 
 Example new order:
 
-curl -X POST http://localhost:3000/orders \
-  -H "Content-Type: application/json" \
-  -d '{"clientOrderId":"kiosk-01-0001","item":"coffee","quantity":2}'
+	curl -X POST http://localhost:3000/orders \
+	  -H "Content-Type: application/json" \
+	  -d '{"clientOrderId":"kiosk-01-0001","item":"coffee","quantity":2}'
 
 Example duplicate retry using the same logical order id:
 
-curl -X POST http://localhost:3000/orders \
-  -H "Content-Type: application/json" \
-  -d '{"clientOrderId":"kiosk-01-0001","item":"coffee","quantity":2}'
+	curl -X POST http://localhost:3000/orders \
+	  -H "Content-Type: application/json" \
+	  -d '{"clientOrderId":"kiosk-01-0001","item":"coffee","quantity":2}'
 
 Example status check:
 
-curl http://localhost:3000/orders/kiosk-01-0001
+	curl http://localhost:3000/orders/kiosk-01-0001
 
 Logs
 
