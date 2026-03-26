@@ -2,9 +2,9 @@
 
 ## Student Information
 
-- Name: Arkar Moe Myint
-- UMass Email: amoemyint@umass.edu
-- SPIRE ID: 33859938
+- Name: Arkar Moe Myint  
+- UMass Email: amoemyint@umass.edu  
+- SPIRE ID: 33859938  
 
 ---
 
