@@ -1,4 +1,4 @@
-# Homework 01 Implementation Brief
+# Homework 01: Reliable Campus Kiosk Simulation
 
 ## Student Information
 
