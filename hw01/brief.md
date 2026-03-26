@@ -16,19 +16,19 @@ docker compose up --build
 
 **The main app is available at:**
 
-http://localhost:3000
+	http://localhost:3000
 
 **The monitoring dashboard is available at:**
 
-http://localhost:3000/dashboard
+	http://localhost:3000/dashboard
 
-** To stop the project:**
+**To stop the project:**
 
-Ctrl + C
+	Ctrl + C
 
-or
+**or**
 
-docker compose down
+	docker compose down
 
 ---
 
