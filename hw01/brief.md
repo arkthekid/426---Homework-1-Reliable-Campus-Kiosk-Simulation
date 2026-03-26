@@ -74,9 +74,9 @@ This project is a small multi-container system with four services:
 1. **api**
 
 The API is an Express server. It serves:
-	•	the kiosk page at /
-	•	the monitoring dashboard at /dashboard
-	•	the order endpoints POST /orders and GET /orders/:clientOrderId
+- the kiosk page at /
+- the monitoring dashboard at /dashboard
+- the order endpoints POST /orders and GET /orders/:clientOrderId
 
 It accepts new orders, stores order state in Redis, and queues new work without doing the slow fulfillment work inline.
 
