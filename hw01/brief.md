@@ -12,7 +12,6 @@
 
 From inside the `code/` folder, run:
 
-```bash
 docker compose up --build
 
 **The main app is available at:**
