@@ -97,13 +97,13 @@ Redis stores the shared state of the system and the queue of pending jobs.
 ## HTML Request Flow
 
 The kiosk page is a plain HTML form. A user enters:
-	•	clientOrderId
-	•	item
-	•	quantity
+•	clientOrderId
+•	item
+•	quantity
 
 The form submits to the server, and the server applies the same order creation logic used by the JSON API. After submission, the page shows whether the order was:
-	•	accepted as a new order
-	•	recognized as a duplicate retry
+•	accepted as a new order
+•	recognized as a duplicate retry
 
 The monitoring dashboard is also a plain HTML page. It refreshes automatically every few seconds and shows recent order state so the grader can observe queued, processing, and completed.
 
