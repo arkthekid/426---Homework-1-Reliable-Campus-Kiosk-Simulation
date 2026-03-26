@@ -94,7 +94,7 @@ Redis stores the shared state of the system and the queue of pending jobs.
 
 ---
 
-HTML Request Flow
+## HTML Request Flow
 
 The kiosk page is a plain HTML form. A user enters:
 	•	clientOrderId
@@ -107,9 +107,9 @@ The form submits to the server, and the server applies the same order creation l
 
 The monitoring dashboard is also a plain HTML page. It refreshes automatically every few seconds and shows recent order state so the grader can observe queued, processing, and completed.
 
-⸻
+---
 
-Redis Usage
+## Redis Usage
 
 This project uses Redis for both queueing and shared system state.
 
@@ -127,9 +127,9 @@ Recent order tracking
 
 This design keeps the system small and easy to explain while still showing the separation between fast request handling and slower background work.
 
-⸻
+---
 
-Kiosk-Sim Design and Environment Variables
+## Kiosk-Sim Design and Environment Variables
 
 The kiosk simulator starts multiple async kiosk loops in parallel.
 
@@ -141,7 +141,9 @@ Each kiosk:
 
 This makes it easy to observe both concurrent submissions and duplicate retries.
 
-Environment variables used
+---
+
+## Environment variables used
 	•	KIOSK_SIM_API_BASE_URL
 	•	base URL of the API service
 	•	KIOSK_SIM_KIOSKS
@@ -157,7 +159,7 @@ Environment variables used
 
 ⸻
 
-Idempotency Strategy
+## Idempotency Strategy
 
 My idempotency strategy is enforced at the API boundary.
 
@@ -177,9 +179,9 @@ Because the same logical order always reuses the same clientOrderId, duplicate r
 
 The worker also checks existing state before updating an order, so already completed orders are not processed again.
 
-⸻
+---
 
-Why the System Is Correct
+## Why the System Is Correct
 
 The API responds quickly because it only validates, stores state, and queues work. It does not simulate fulfillment inline.
 
@@ -192,30 +194,32 @@ The dashboard makes the state transitions observable:
 
 The duplicate retry behavior is safe because the system treats the same clientOrderId as the same logical order instead of a new one.
 
-⸻
+---
 
-Setup, Run, Test, and Cleanup Commands
+## Setup, Run, Test, and Cleanup Commands
 
 Start
 
-docker compose up --build
+	docker compose up --build
 
 Stop
 
-docker compose down
+	docker compose down
 
 Logs
 
-docker compose logs -f worker
-docker compose logs -f kiosk-sim
+	docker compose logs -f worker
+	docker compose logs -f kiosk-sim
 
 Example status check
 
-curl http://localhost:3000/orders/kiosk-01-0001
+	curl http://localhost:3000/orders/kiosk-01-0001
 
-Evidence Links
+---
 
-## Screenshots
+## Evidence Links
+
+### Screenshots
 
 1. **Kiosk Page**
 ![Kiosk Page](shots/02-kiosk-page.png)
@@ -235,10 +239,14 @@ Evidence Links
 6. **Kiosk Simulator Logs (Parallel Activity & Retries)**
 ![Kiosk Simulator Logs](shots/01-system-start.png)
 
-Videos
+---
+
+## Videos
 	•	No video included for this submission.
 
-AI Use Statement
+---
+
+## AI Use Statement
 
 I used AI as a development assistant for scaffolding, debugging, and explaining implementation steps for Docker, Express, Redis, the worker loop, the kiosk simulator loop, and the write-up structure.
 
@@ -250,3 +258,5 @@ I still verified the system myself by:
 	•	verifying that duplicate retries with the same clientOrderId did not create duplicate completed work
 
 I understand the code I am submitting and I verified the main behaviors directly through the browser, API responses, logs, and dashboard.
+
+---
