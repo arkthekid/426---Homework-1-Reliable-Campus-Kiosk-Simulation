@@ -12,7 +12,7 @@
 
 From inside the `code/` folder, run:
 
-docker compose up --build
+	docker compose up --build
 
 **The main app is available at:**
 
@@ -65,7 +65,7 @@ Logs
 
 Worker logs and kiosk simulator activity can be observed directly in the docker compose up --build output.
 
-⸻
+---
 
 Short Architecture Explanation
 
