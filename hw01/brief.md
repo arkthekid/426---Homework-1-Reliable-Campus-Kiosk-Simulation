@@ -256,7 +256,9 @@ Example status check
 ---
 
 ## Videos
-	•	No video included for this submission.
+
+### End-to-End Demo
+[End-to-End Demo](vids/end-to-end-demo.mov)
 
 ---
 
