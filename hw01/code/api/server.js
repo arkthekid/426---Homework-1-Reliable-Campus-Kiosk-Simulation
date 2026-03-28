@@ -311,12 +311,17 @@ async function createOrReuseOrder({ clientOrderId, item, quantity }) {
 
   if (existing) {
     const order = JSON.parse(existing);
+
+    const updatedOrder = {
+      ...order,
+      duplicate: true
+    };
+
+    await redis.set(key, JSON.stringify(updatedOrder)); // 👈 ADD THIS
+
     return {
       statusCode: 200,
-      body: {
-        ...order,
-        duplicate: true
-      }
+      body: updatedOrder
     };
   }
 

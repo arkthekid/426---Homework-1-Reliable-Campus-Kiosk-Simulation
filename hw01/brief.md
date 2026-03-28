@@ -253,6 +253,12 @@ Example status check
 8. **API Contract Validation (curl requests)**
 ![API Curl](shots/08-api-curl.png)
 
+9. **Monitoring Dashboard (Live)**
+![Dashboard Live](shots/09-dashboard-live.png)
+
+10. **Dashboard (Final State)**
+![Dashboard](shots/10-dashboard-final.png)
+
 ---
 
 ## Videos
