@@ -33,93 +33,150 @@ function renderKioskPage({ message = "", order = null, formValues = {} } = {}) {
   return `
     <html>
       <head>
-        <title>Campus Kiosk</title>
+        <title>Campus Snack Kiosk</title>
         <style>
           body {
-            font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: 40px auto;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background: #f7f5fb;
+            margin: 0;
+            padding: 40px 20px;
             line-height: 1.5;
+            color: #2f2a3a;
+          }
+          .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 32px;
+            border-radius: 18px;
+            box-shadow: 0 10px 26px rgba(91, 75, 112, 0.12);
+          }
+          h1 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 32px;
+          }
+          p {
+            margin-bottom: 20px;
+          }
+          label {
+            display: block;
+            font-weight: 600;
+            margin-top: 14px;
+            margin-bottom: 6px;
           }
           input, button {
-            padding: 8px;
-            margin: 6px 0;
             width: 100%;
             box-sizing: border-box;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #d8d2e3;
+            font-size: 15px;
+          }
+          input {
+            margin-bottom: 6px;
+          }
+          button {
+            margin-top: 14px;
+            border: none;
+            background: #b8a2e3;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease;
+          }
+          button:hover {
+            background: #a48ad9;
           }
           .box {
-            border: 1px solid #ccc;
-            padding: 16px;
-            border-radius: 8px;
-            margin-top: 20px;
+            border: 1px solid #ddd6ea;
+            padding: 18px;
+            border-radius: 14px;
+            margin-top: 24px;
+            box-shadow: 0 4px 14px rgba(91, 75, 112, 0.06);
           }
           .success {
-            background: #f3fff3;
+            background: #eefbf3;
           }
           .duplicate {
-            background: #fff8e6;
+            background: #fff7ed;
           }
           a {
             display: inline-block;
-            margin-top: 16px;
+            margin-top: 18px;
+            color: #6b4fb3;
+            font-weight: 600;
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+          .footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #7a728a;
           }
         </style>
       </head>
       <body>
-        <h1>Campus Snack Kiosk</h1>
-        <p>Place an order below. Keep the same clientOrderId to simulate a retry or duplicate.</p>
+        <div class="container">
+          <h1>Campus Snack Kiosk</h1>
+          <p>Place an order below.</p>
 
-        <form method="POST" action="/orders/form">
-          <label>Client Order ID</label>
-          <input
-            type="text"
-            name="clientOrderId"
-            value="${escapeHtml(clientOrderId)}"
-            required
-          />
+          <form method="POST" action="/orders/form">
+            <label>Client Order ID</label>
+            <input
+              type="text"
+              name="clientOrderId"
+              value="${escapeHtml(clientOrderId)}"
+              required
+            />
 
-          <label>Item</label>
-          <input
-            type="text"
-            name="item"
-            value="${escapeHtml(item)}"
-            placeholder="iced-latte"
-            required
-          />
+            <label>Item</label>
+            <input
+              type="text"
+              name="item"
+              value="${escapeHtml(item)}"
+              placeholder="iced-latte"
+              required
+            />
 
-          <label>Quantity</label>
-          <input
-            type="number"
-            name="quantity"
-            min="1"
-            value="${escapeHtml(quantity)}"
-            required
-          />
+            <label>Quantity</label>
+            <input
+              type="number"
+              name="quantity"
+              min="1"
+              value="${escapeHtml(quantity)}"
+              required
+            />
 
-          <button type="submit">Submit Order</button>
-        </form>
+            <button type="submit">Submit Order</button>
+          </form>
 
-        <a href="/dashboard">Open Monitoring Dashboard</a>
+          <a href="/dashboard">Open Monitoring Dashboard</a>
 
-        ${
-          message
-            ? `<div class="box ${order && order.duplicate ? "duplicate" : "success"}">
-                <h2>${escapeHtml(message)}</h2>
-                ${
-                  order
-                    ? `
-                    <p><strong>clientOrderId:</strong> ${escapeHtml(order.clientOrderId)}</p>
-                    <p><strong>item:</strong> ${escapeHtml(order.item)}</p>
-                    <p><strong>quantity:</strong> ${escapeHtml(order.quantity)}</p>
-                    <p><strong>status:</strong> ${escapeHtml(order.status)}</p>
-                    <p><strong>duplicate:</strong> ${escapeHtml(order.duplicate)}</p>
-                    <p><strong>createdAt:</strong> ${escapeHtml(order.createdAt || "")}</p>
-                    `
-                    : ""
-                }
-              </div>`
-            : ""
-        }
+          ${
+            message
+              ? `<div class="box ${order && order.duplicate ? "duplicate" : "success"}">
+                  <h2>${escapeHtml(message)}</h2>
+                  ${
+                    order
+                      ? `
+                      <p><strong>clientOrderId:</strong> ${escapeHtml(order.clientOrderId)}</p>
+                      <p><strong>item:</strong> ${escapeHtml(order.item)}</p>
+                      <p><strong>quantity:</strong> ${escapeHtml(order.quantity)}</p>
+                      <p><strong>status:</strong> ${escapeHtml(order.status)}</p>
+                      <p><strong>duplicate:</strong> ${escapeHtml(order.duplicate)}</p>
+                      <p><strong>createdAt:</strong> ${escapeHtml(order.createdAt || "")}</p>
+                      `
+                      : ""
+                  }
+                </div>`
+              : ""
+          }
+
+          <div class="footer">My Demo</div>
+        </div>
       </body>
     </html>
   `;
@@ -146,55 +203,96 @@ function renderDashboard(orders) {
   return `
     <html>
       <head>
-        <title>Monitoring Dashboard</title>
+        <title>Order Monitoring Dashboard</title>
         <meta http-equiv="refresh" content="3" />
         <style>
           body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background: #f7f5fb;
+            margin: 0;
+            padding: 40px 20px;
+            color: #2f2a3a;
+          }
+          .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 32px;
+            border-radius: 18px;
+            box-shadow: 0 10px 26px rgba(91, 75, 112, 0.12);
+          }
+          h1 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 32px;
+          }
+          p {
+            margin-bottom: 16px;
           }
           table {
             border-collapse: collapse;
             width: 100%;
             margin-top: 20px;
+            overflow: hidden;
+            border-radius: 12px;
           }
           th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
+            border: 1px solid #e7e1f1;
+            padding: 10px;
             text-align: left;
             vertical-align: top;
+            font-size: 14px;
           }
           th {
-            background: #f4f4f4;
+            background: #ece4fb;
+            font-weight: 700;
+          }
+          tr:nth-child(even) {
+            background: #faf8fe;
           }
           a {
             display: inline-block;
-            margin-top: 16px;
+            margin-top: 10px;
+            color: #6b4fb3;
+            font-weight: 600;
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+          .footer {
+            margin-top: 24px;
+            font-size: 13px;
+            color: #7a728a;
           }
         </style>
       </head>
       <body>
-        <h1>Monitoring Dashboard</h1>
-        <p>This page refreshes every 3 seconds.</p>
-        <a href="/">Back to Kiosk Page</a>
+        <div class="container">
+          <h1>Order Monitoring Dashboard</h1>
+          <p>This page refreshes every 3 seconds so order progress can be observed live.</p>
+          <a href="/">Back to Kiosk Page</a>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Client Order ID</th>
-              <th>Item</th>
-              <th>Quantity</th>
-              <th>Status</th>
-              <th>Duplicate</th>
-              <th>Created</th>
-              <th>Processing Started</th>
-              <th>Completed</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${rows || '<tr><td colspan="8">No orders yet</td></tr>'}
-          </tbody>
-        </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Client Order ID</th>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Duplicate</th>
+                <th>Created</th>
+                <th>Processing Started</th>
+                <th>Completed</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows || '<tr><td colspan="8">No orders yet</td></tr>'}
+            </tbody>
+          </table>
+
+          <div class="footer">Reliable campus kiosk demo</div>
+        </div>
       </body>
     </html>
   `;
@@ -273,8 +371,8 @@ app.post("/orders/form", async (req, res) => {
 
     const message =
       result.statusCode === 202
-        ? "New order accepted and queued"
-        : "Duplicate order recognized safely";
+        ? "Order accepted and added to the queue"
+        : "Retry detected: existing order reused safely";
 
     res.send(
       renderKioskPage({
