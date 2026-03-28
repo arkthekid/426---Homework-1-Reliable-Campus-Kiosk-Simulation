@@ -61,9 +61,9 @@ Example status check:
 
 	curl http://localhost:3000/orders/kiosk-01-0001
 
-Logs
+**Logs**
 
-Worker logs and kiosk simulator activity can be observed directly in the docker compose up --build output.
+Worker logs and kiosk simulator activity can be observed directly in the `docker compose up --build` output.
 
 ---
 
@@ -105,7 +105,7 @@ The form submits to the server, and the server applies the same order creation l
 - accepted as a new order
 - recognized as a duplicate retry
 
-The monitoring dashboard is also a plain HTML page. It refreshes automatically every few seconds and shows recent order state so the grader can observe queued, processing, and completed.
+The monitoring dashboard is also a plain HTML page. It refreshes automatically every few seconds and shows recent order state so the grader can observe queued, processing, or completed.
 
 ---
 
@@ -125,7 +125,7 @@ Recent order tracking
 - orders:recent
 - Stores recent order IDs so the dashboard can render the latest activity
 
-This design keeps the system small and easy to explain while still showing the separation between fast request handling and slower background work.
+This design keeps the system small and easy to explain. It also shows the separation between fast request handling and slower background work.
 
 ---
 
@@ -139,23 +139,31 @@ Each kiosk:
 - generates IDs such as kiosk-01-0001, kiosk-01-0002, etc.
 - sometimes retries a previously used ID instead of creating a new one
 
-This makes it easy to observe both concurrent submissions and duplicate retries.
+This is to observe both concurrent submissions and duplicate retries.
 
 ---
 
-## Environment variables used
-	•	KIOSK_SIM_API_BASE_URL
-	•	base URL of the API service
-	•	KIOSK_SIM_KIOSKS
-	•	number of kiosks to simulate in parallel
-	•	KIOSK_SIM_KIOSK_PREFIX
-	•	prefix used for kiosk IDs
-	•	KIOSK_SIM_INTERVAL_MS
-	•	delay between submissions from each kiosk
-	•	KIOSK_SIM_REUSE_EXISTING_ID_RATE
-	•	probability that a kiosk retries an old logical order ID
-	•	KIOSK_SIM_STARTUP_DELAY_MS
-	•	small startup delay so the simulator waits for the API to be ready
+## Environment Variables
+
+The kiosk simulator is configurable through environment variables defined in docker-compose.
+
+- **KIOSK_SIM_API_BASE_URL**  
+  Base URL of the API service (e.g., http://api:3000)
+
+- **KIOSK_SIM_KIOSKS**  
+  Number of kiosks simulated in parallel
+
+- **KIOSK_SIM_KIOSK_PREFIX**  
+  Prefix used for kiosk IDs (e.g., kiosk → kiosk-01, kiosk-02)
+
+- **KIOSK_SIM_INTERVAL_MS**  
+  Delay between requests from each kiosk
+
+- **KIOSK_SIM_REUSE_EXISTING_ID_RATE**  
+  Probability of reusing an existing clientOrderId to simulate duplicate requests
+
+- **KIOSK_SIM_STARTUP_DELAY_MS**  
+  Initial delay to allow the API service to start before sending requests
 
 ⸻
 
@@ -239,6 +247,9 @@ Example status check
 6. **Kiosk Simulator Logs (Parallel Activity & Retries)**
 ![Kiosk Simulator Logs](shots/01-system-start.png)
 
+7. **Kiosk Simulator Parallel Activity**
+![Kiosk Simulator Logs](shots/07-kiosk-sim.png)
+
 ---
 
 ## Videos
@@ -248,14 +259,14 @@ Example status check
 
 ## AI Use Statement
 
-I used AI as a development assistant for scaffolding, debugging, and explaining implementation steps for Docker, Express, Redis, the worker loop, the kiosk simulator loop, and the write-up structure.
+I used ChatGPT as a development assistant for debugging, and to gain a better understanding of the requirements on how to implement the system.
 
 I still verified the system myself by:
-	•	running the full multi-container project
-	•	testing the API routes
-	•	testing browser form submission
-	•	verifying queued, processing, and completed state changes
-	•	verifying that duplicate retries with the same clientOrderId did not create duplicate completed work
+•	running the full multi-container project
+•	running the API routes
+•	testing browser form submissions
+•	verifying queued, processing, and completed state changes
+•	verifying that duplicate retries with the same clientOrderId did not create duplicate completed work
 
 I understand the code I am submitting and I verified the main behaviors directly through the browser, API responses, logs, and dashboard.
 
