@@ -254,10 +254,10 @@ Example status check
 ![API Curl](shots/08-api-curl.png)
 
 9. **Monitoring Dashboard (Live)**
-![Dashboard Live](shots/09-dashboard-live.png)
+![Dashboard Live](shots/09-monitoring-dashboard-live.png)
 
 10. **Dashboard (Final State)**
-![Dashboard](shots/10-dashboard-final.png)
+![Dashboard](shots/10-dashboard-all-completed.png)
 
 ---
 
