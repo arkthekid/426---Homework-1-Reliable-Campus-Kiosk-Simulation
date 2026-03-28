@@ -250,6 +250,9 @@ Example status check
 7. **Kiosk Simulator Parallel Activity**
 ![Kiosk Simulator Logs](shots/07-kiosk-sim.png)
 
+8. **API Contract Validation (curl requests)**
+![API Curl](shots/08-api-curl.png)
+
 ---
 
 ## Videos
