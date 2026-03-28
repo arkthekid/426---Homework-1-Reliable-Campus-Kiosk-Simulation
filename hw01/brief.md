@@ -238,8 +238,8 @@ Example status check
 3. **Duplicate Order Recognized Safely**
 ![Duplicate Order](shots/06-duplicate-handling.png)
 
-4. **Monitoring Dashboard**
-![Monitoring Dashboard](shots/05-dashboard-basic.png)
+4. **Dashboard**
+![Dashboard](shots/05-dashboard-basic.png)
 
 5. **Worker Logs (Background Processing)**
 ![Worker Logs](shots/04-worker-processing.png)
